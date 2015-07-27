@@ -13,8 +13,8 @@ fake.run = function (options) {
 	options.tip.innerHTML = tutorial[currentStep].tip;
 
 	var term = new Terminal({
-		cols: 80,
-		rows: 24,
+		cols: 120,
+		rows: 28,
 		useStyle: true,
 		screenKeys: false
 	});

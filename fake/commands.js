@@ -168,5 +168,10 @@ delta2323/jnns2015-tutorial                                                     
 	"_default": {
 		output: ""
 	}
+},
+"pwd": {
+	"_default": {
+		output: "/home/docker"
+	}
 }
 };
