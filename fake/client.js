@@ -7,10 +7,13 @@ fake.run = function (options) {
 
 	options = options || {};
 
+	options.intro.innerHTML = tutorial[0].intro;
+	options.task.innerHTML = tutorial[0].task;
+	options.tip.innerHTML = tutorial[0].tip;
 
 	var term = new Terminal({
-		cols: 120,
-		rows: 60,
+		cols: 80,
+		rows: 24,
 		useStyle: true,
 		screenKeys: true
 	});
@@ -18,7 +21,7 @@ fake.run = function (options) {
 	term.on('data', function(data) {
 		if (data.charCodeAt(0) == 13) {
 			term.write(fake.command(fake.currentCommand));
-			term.write('\r\n $ ');
+			term.write('\r\n$ ');
 			fake.currentCommand = ""
 		} else {
 			term.write(data)
@@ -27,7 +30,7 @@ fake.run = function (options) {
 	});
 
 	term.open(options.parent || document.body);
-	term.write('WELCOME!\r\n $ ');
+	term.write('WELCOME!\r\n$ ');
 
 //	term.destroy();
 };
