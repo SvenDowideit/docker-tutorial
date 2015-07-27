@@ -7,9 +7,10 @@ fake.run = function (options) {
 
 	options = options || {};
 
-	options.intro.innerHTML = tutorial[0].intro;
-	options.task.innerHTML = tutorial[0].task;
-	options.tip.innerHTML = tutorial[0].tip;
+	currentStep = 0;
+	options.intro.innerHTML = tutorial[currentStep].intro;
+	options.task.innerHTML = tutorial[currentStep].task;
+	options.tip.innerHTML = tutorial[currentStep].tip;
 
 	var term = new Terminal({
 		cols: 80,
@@ -21,6 +22,12 @@ fake.run = function (options) {
 	term.on('data', function(data) {
 		if (data.charCodeAt(0) == 13) {
 			term.write(fake.command(fake.currentCommand));
+			if (fake.currentCommand == tutorial[currentStep].command_expected.join(" ")) {
+				currentStep++;
+			        options.intro.innerHTML = tutorial[currentStep].intro;
+			        options.task.innerHTML = tutorial[currentStep].task;
+			        options.tip.innerHTML = tutorial[currentStep].tip;
+			}
 			term.write('\r\n$ ');
 			fake.currentCommand = ""
 		} else {

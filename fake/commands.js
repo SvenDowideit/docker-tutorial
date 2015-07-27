@@ -134,6 +134,34 @@ OS/Arch (server): linux/amd64`
 	},
 	"--version" : {
 		output: "Docker version 1.6.2-cs5, build 6f88399"
+	},
+	"search tutorial": {
+		output: `NAME                                       DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+learn/tutorial                                                                             11                   
+florentbenoit/docker-angularjs-tutorials                                                   1                    [OK]
+cazcade/weave-multicast-tutorial                                                           0                    [OK]
+delta2323/jnns2015-tutorial-gpu                                                            0                    [OK]
+neilellis/weave-multicast-tutorial                                                         0                    [OK]
+sfilipov/rails-tutorial                                                                    0                    [OK]
+pgrund/docker-tutorial                                                                     0                    [OK]
+fabioberger/dockerize-tutorial                                                             0                    [OK]
+ianneub/rails-tutorial                                                                     0                    [OK]
+tobegit3hub/tutorial-beego                                                                 0                    [OK]
+li123456/tutorial                          tutorial                                        0                    
+msfuko/nodejs-tutorial                                                                     0                    [OK]
+alectolytic/quagga-bgp-tutorial                                                            0                    [OK]
+mgalloy/docker-austin-tutorial-02                                                          0                    [OK]
+lmagnus/tutorials                                                                          0                    [OK]
+wonderlamb/tutorial                        Tutorial                                        0                    
+kedarvaidya/rails-tutorial-v3-dev                                                          0                    [OK]
+intrig/tutorial                                                                            0                    
+johnklee/tutorial                          Testing purpose                                 0                    
+bzamecnik/docker-tutorial                  Docker tutorial                                 0                    
+richardqa/tutorial                                                                         0                    
+pavanadepu/tutorial                                                                        0                    
+eivindee/docker-tutorial                   Following the tutorial from http://docs.do...   0                    
+odk211/spree-tutorial                                                                      0                    [OK]
+delta2323/jnns2015-tutorial                                                                0                    [OK]`
 	}
 },
 "ls": {
