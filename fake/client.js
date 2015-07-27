@@ -15,7 +15,7 @@ fake.run = function (options) {
 		cols: 80,
 		rows: 24,
 		useStyle: true,
-		screenKeys: true
+		screenKeys: false
 	});
 
 	term.on('data', function(data) {
@@ -36,11 +36,29 @@ fake.run = function (options) {
 };
 
 
-fake.command = function (command) {
-	if (command == "") {
+fake.command = function (str) {
+	if (str == "") {
 		return ""
 	}
 
+	ARGC = str.split(" ")
+
+	if (commands[ARGC[0]] != undefined) {
+		//TODO: probably should re-combine with join(" ") - but need to extract any quoted strings before the split.
+		args = str.substring(ARGC[0].length+1);
+		key = args
+		if (key == "") { key = "_default"; }
+		if (commands[ARGC[0]][key] != undefined) {
+			return "\r\n"+commands[ARGC[0]][key].output.replace(/\n/g, "\r\n");
+		} else {
+			key = "_error"
+			if (commands[ARGC[0]][key] != undefined) {
+				return "\r\n"+commands[ARGC[0]][key].output.replace(/\n/g, "\r\n");
+			} else {
+				return "\r\n"+ARGC[0]+" error: "+args
+			}
+		}
+	}
 //TODO: need to parse it..
-	return "\r\n-sh: "+command+": command not found";
+	return "\r\n-sh: "+ARGC[0]+": command not found";
 }
