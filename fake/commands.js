@@ -1,4 +1,17 @@
 var commands = {
+"whale": {
+	"_default": {
+		"output": `                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /"""""""""""""""""\\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \\______ o           __/
+             \\    \\         __/
+              \\____\\_______/
+`
+	}
+},
 "docker": {
 	"_error": {
 		output: `docker: '{{}}' is not a docker command. See 'docker --help'.`

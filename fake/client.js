@@ -37,7 +37,8 @@ fake.run = function (options) {
 	});
 
 	term.open(options.parent || document.body);
-	term.write('WELCOME!\r\n$ ');
+	term.write(fake.command("whale"));
+	term.write('Welcome to the Docker tutorial!\r\n$ ');
 
 //	term.destroy();
 };
