@@ -7,6 +7,7 @@ fake.run = function (options) {
 
 	options = options || {};
 
+//TODO: persist step and tutorial name in a cookie...
 	currentStep = 0;
 	options.intro.innerHTML = tutorial[currentStep].intro;
 	options.task.innerHTML = tutorial[currentStep].task;
@@ -67,6 +68,7 @@ fake.command = function (str) {
 			}
 		}
 	}
+
 //TODO: need to parse it..
 	return "\r\n-sh: "+ARGC[0]+": command not found";
 }

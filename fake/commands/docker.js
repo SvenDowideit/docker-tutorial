@@ -161,5 +161,10 @@ pavanadepu/tutorial                                                             
 eivindee/docker-tutorial                   Following the tutorial from http://docs.do...   0                    
 odk211/spree-tutorial                                                                      0                    [OK]
 delta2323/jnns2015-tutorial                                                                0                    [OK]`
-	}
+	},
+"pull learn/tutorial": {
+	output: `Pulling repository learn/tutorial
+8dbd9e392a96: Download complete 
+Status: Downloaded newer image for learn/tutorial:latest`
+}
 };
