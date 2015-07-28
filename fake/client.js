@@ -1,7 +1,10 @@
+
+
 var fake = {
 //TODO: should be array so the user can up&down arrow through the history
 	currentCommand: ''
 };
+
 
 fake.run = function (options) {
 
@@ -22,14 +25,13 @@ fake.run = function (options) {
 
 	term.on('data', function(data) {
 		if (data.charCodeAt(0) == 13) {
-			term.write(fake.command(fake.currentCommand));
+			fake.command(term, fake.currentCommand);
 			if (fake.currentCommand == tutorial[currentStep].command_expected.join(" ")) {
 				currentStep++;
 			        options.intro.innerHTML = tutorial[currentStep].intro;
 			        options.task.innerHTML = tutorial[currentStep].task;
 			        options.tip.innerHTML = tutorial[currentStep].tip;
 			}
-			term.write('\r\n$ ');
 			fake.currentCommand = ""
 		} else {
 			term.write(data)
@@ -38,37 +40,47 @@ fake.run = function (options) {
 	});
 
 	term.open(options.parent || document.body);
-	term.write(fake.command("whale"));
-	term.write('Welcome to the Docker tutorial!\r\n$ ');
+	fake.command(term, "whale");
 
 //	term.destroy();
 };
 
 
-fake.command = function (str) {
+fake.command = function (term, str) {
 	if (str == "") {
-		return ""
+		return
 	}
 
-	ARGC = str.split(" ")
+	ARGV = str.split(" ")
 
-	if (commands[ARGC[0]] != undefined) {
+	if (commands[ARGV[0]] === undefined) {
+		// try loading the definition dynamically
+		requirejs(['/commands/'+ARGV[0]+'.js'], function test(cmd) {
+			console.log('loaded '+ARGV[0]);
+			commands[ARGV[0]] = cmd;
+			fake.command(term, str);
+		}, function fail(err) {
+			console.log('failed to load '+ARGV[0]);
+			commands[ARGV[0]] = {"_error": {"output": "\r\n-sh: {{}}: command not found"}};
+			fake.command(term, str);
+		});
+		return; // don't output anything yet
+	}
+	{
 		//TODO: probably should re-combine with join(" ") - but need to extract any quoted strings before the split.
-		args = str.substring(ARGC[0].length+1);
+		args = str.substring(ARGV[0].length+1);
 		key = args
 		if (key == "") { key = "_default"; }
-		if (commands[ARGC[0]][key] != undefined) {
-			return "\r\n"+commands[ARGC[0]][key].output.replace(/\n/g, "\r\n");
+		if (commands[ARGV[0]][key] != undefined) {
+			term.write("\r\n"+commands[ARGV[0]][key].output.replace(/\n/g, "\r\n"));
 		} else {
 			key = "_error"
-			if (commands[ARGC[0]][key] != undefined) {
-				return "\r\n"+commands[ARGC[0]][key].output.replace(/\n/g, "\r\n");
+			if (commands[ARGV[0]][key] != undefined) {
+				term.write("\r\n"+commands[ARGV[0]][key].output.replace(/\n/g, "\r\n"));
 			} else {
-				return "\r\n"+ARGC[0]+" error: "+args
+				term.write("\r\n"+ARGV[0]+" error: "+args);
 			}
 		}
 	}
-
-//TODO: need to parse it..
-	return "\r\n-sh: "+ARGC[0]+": command not found";
+	term.write('\r\n$ ');
 }

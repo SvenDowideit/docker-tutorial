@@ -1,4 +1,4 @@
-commands["docker"] = {
+define({
 	"_error": {
 		output: `docker: '{{}}' is not a docker command. See 'docker --help'.`
 	},
@@ -167,4 +167,4 @@ delta2323/jnns2015-tutorial                                                     
 8dbd9e392a96: Download complete 
 Status: Downloaded newer image for learn/tutorial:latest`
 }
-};
+});

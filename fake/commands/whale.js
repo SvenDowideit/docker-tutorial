@@ -1,4 +1,4 @@
-commands["whale"] = {
+define({
 	"_default": {
 		"output": `                        ##         .
                   ## ## ##        ==
@@ -8,17 +8,8 @@ commands["whale"] = {
            \\______ o           __/
              \\    \\         __/
               \\____\\_______/
+      Welcome to the Docker tutorial!
+        please send feedback to SvenDowideit@docker.com
 `
 	}
-};
-
-commands["ls"] = {
-	"_default": {
-		output: ""
-	}
-};
-commands["pwd"] = {
-	"_default": {
-		output: "/home/docker"
-	}
-};
+});
