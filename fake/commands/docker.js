@@ -1,18 +1,4 @@
-var commands = {
-"whale": {
-	"_default": {
-		"output": `                        ##         .
-                  ## ## ##        ==
-               ## ## ## ## ##    ===
-           /"""""""""""""""""\\___/ ===
-      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
-           \\______ o           __/
-             \\    \\         __/
-              \\____\\_______/
-`
-	}
-},
-"docker": {
+commands["docker"] = {
 	"_error": {
 		output: `docker: '{{}}' is not a docker command. See 'docker --help'.`
 	},
@@ -176,15 +162,4 @@ eivindee/docker-tutorial                   Following the tutorial from http://do
 odk211/spree-tutorial                                                                      0                    [OK]
 delta2323/jnns2015-tutorial                                                                0                    [OK]`
 	}
-},
-"ls": {
-	"_default": {
-		output: ""
-	}
-},
-"pwd": {
-	"_default": {
-		output: "/home/docker"
-	}
-}
 };
