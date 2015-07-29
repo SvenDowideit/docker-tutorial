@@ -1,9 +1,9 @@
-define({
+{
 	"_error": {
-		output: ["docker: '{{}}' is not a docker command. See 'docker --help'."]
+		"output": ["docker: '{{}}' is not a docker command. See 'docker --help'."]
 	},
 	"info" : {
-		output: ["Containers: 9",
+		"output": ["Containers: 9",
 "Images: 143",
 "Storage Driver: devicemapper",
 " Pool Name: docker-202:2-8817411-pool",
@@ -30,7 +30,7 @@ define({
 "ID: 6BEA:KJB3:SZWR:NKAZ:H7BZ:Z6UP:DCEH:UVEH:PW4X:F4T2:K7W6:K2MY"]
 	},
 	"_default" : {
-		output: ["Usage: docker [OPTIONS] COMMAND [arg...]",
+		"output": ["Usage: docker [OPTIONS] COMMAND [arg...]",
 "",
 "A self-sufficient runtime for linux containers.",
 "",
@@ -117,7 +117,7 @@ define({
 "Run 'docker COMMAND --help' for more information on a command."]
 	},
 	"help" : {
-		output: ["Usage: docker [OPTIONS] COMMAND [arg...]",
+		"output": ["Usage: docker [OPTIONS] COMMAND [arg...]",
 "",
 "A self-sufficient runtime for linux containers.",
 "",
@@ -204,7 +204,7 @@ define({
 "Run 'docker COMMAND --help' for more information on a command."]
 	},
 	"version" : {
-		output: ["Client version: 1.6.2-cs5",
+		"output": ["Client version: 1.6.2-cs5",
 "Client API version: 1.18",
 "Go version (client): go1.4.2",
 "Git commit (client): 6f88399",
@@ -216,13 +216,13 @@ define({
 "OS/Arch (server): linux/amd64"]
 	},
 	"-v" : {
-		output: ["Docker version 1.6.2-cs5, build 6f88399"]
+		"output": ["Docker version 1.6.2-cs5, build 6f88399"]
 	},
 	"--version" : {
-		output: ["Docker version 1.6.2-cs5, build 6f88399"]
+		"output": ["Docker version 1.6.2-cs5, build 6f88399"]
 	},
 	"search tutorial": {
-		output: ["NAME                                       DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED",
+		"output": ["NAME                                       DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED",
 "learn/tutorial                                                                             11                   ",
 "florentbenoit/docker-angularjs-tutorials                                                   1                    [OK]",
 "cazcade/weave-multicast-tutorial                                                           0                    [OK]",
@@ -250,8 +250,8 @@ define({
 "delta2323/jnns2015-tutorial                                                                0                    [OK]"]
 	},
 "pull learn/tutorial": {
-	output: ["Pulling repository learn/tutorial",
+	"output": ["Pulling repository learn/tutorial",
 "8dbd9e392a96: Download complete ",
 "Status: Downloaded newer image for learn/tutorial:latest"]
 }
-});
+}

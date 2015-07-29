@@ -5,6 +5,12 @@ var fake = {
 	currentCommand: ''
 };
 
+require.config({
+    paths : {
+        //create alias to plugins (not needed if plugins are on the baseUrl)
+        json: 'lib/text'
+    }
+});
 
 fake.run = function (options) {
 
@@ -55,13 +61,13 @@ fake.command = function (term, str) {
 
 	if (commands[ARGV[0]] === undefined) {
 		// try loading the definition dynamically
-		require(['/commands/'+ARGV[0]+'.js?callback=define'], function test(cmd) {
+		require(['json!/commands/'+ARGV[0]+'.js'], function test(cmd) {
 			if (cmd == undefined) {
 				console.log('failed to parse '+ARGV[0]);
 				commands[ARGV[0]] = {"_error": {"output": ["\r\n-sh: {{}}: command not found"]}};
 			} else {
 				console.log('loaded '+ARGV[0]);
-				commands[ARGV[0]] = cmd;
+				commands[ARGV[0]] = JSON.parse(cmd);
 			}
 			fake.command(term, str);
 		}, function fail(err) {

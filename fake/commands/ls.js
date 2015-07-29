@@ -1,5 +1,5 @@
-define({
+{
 	"_default": {
-		output: [".ssh"]
+		"output": ["/home/docker"]
 	}
-});
+}
