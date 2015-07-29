@@ -1,5 +1,5 @@
 define({
 	"_default": {
-		output: "/home/docker"
+		output: ["/home/docker"]
 	}
 });

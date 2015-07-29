@@ -55,13 +55,18 @@ fake.command = function (term, str) {
 
 	if (commands[ARGV[0]] === undefined) {
 		// try loading the definition dynamically
-		requirejs(['/commands/'+ARGV[0]+'.js'], function test(cmd) {
-			console.log('loaded '+ARGV[0]);
-			commands[ARGV[0]] = cmd;
+		require(['/commands/'+ARGV[0]+'.js?callback=define'], function test(cmd) {
+			if (cmd == undefined) {
+				console.log('failed to parse '+ARGV[0]);
+				commands[ARGV[0]] = {"_error": {"output": ["\r\n-sh: {{}}: command not found"]}};
+			} else {
+				console.log('loaded '+ARGV[0]);
+				commands[ARGV[0]] = cmd;
+			}
 			fake.command(term, str);
 		}, function fail(err) {
 			console.log('failed to load '+ARGV[0]);
-			commands[ARGV[0]] = {"_error": {"output": "\r\n-sh: {{}}: command not found"}};
+			commands[ARGV[0]] = {"_error": {"output": ["\r\n-sh: {{}}: command not found"]}};
 			fake.command(term, str);
 		});
 		return; // don't output anything yet
@@ -72,11 +77,11 @@ fake.command = function (term, str) {
 		key = args
 		if (key == "") { key = "_default"; }
 		if (commands[ARGV[0]][key] != undefined) {
-			term.write("\r\n"+commands[ARGV[0]][key].output.replace(/\n/g, "\r\n"));
+			term.write("\r\n"+commands[ARGV[0]][key].output.join("\r\n"));
 		} else {
 			key = "_error"
 			if (commands[ARGV[0]][key] != undefined) {
-				term.write("\r\n"+commands[ARGV[0]][key].output.replace(/\n/g, "\r\n"));
+				term.write("\r\n"+commands[ARGV[0]][key].output.join("\r\n"));
 			} else {
 				term.write("\r\n"+ARGV[0]+" error: "+args);
 			}

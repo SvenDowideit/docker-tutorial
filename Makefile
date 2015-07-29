@@ -2,7 +2,11 @@
 
 update:
 	docker build -t update-commands update-commands/
-	docker run --rm -it -v $(CURDIR)/fake/commands/:/commands:z update-commands
+	# -v $(CURDIR)/fake/commands/:/commands:z 
+	docker run --rm -it \
+		-v $(CURDIR)/commands/:/commands:z \
+		-v /var/run/docker.sock:/var/run/docker.sock \
+		update-commands
 
 fake:
 	docker rm -vf some-nginx
